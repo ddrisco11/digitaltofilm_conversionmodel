@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="338" viewBox="0 0 1080 338" role="img" aria-labelledby="title desc">
+<title id="title">How light becomes a film print</title>
+<desc id="desc">Four stages. Display spectra expose Portra 400 records. Film curves form cyan, magenta and yellow dyes. Their densities attenuate the enlarger light. Endura paper responds to the transmitted light and is viewed under daylight.</desc>
+<rect width="1080" height="338" rx="12" fill="#f5f2e8"/>
+<g font-family="Georgia,serif" fill="#252c26"><text x="30" y="48" font-size="32">From display light to a photographic print</text></g>
+<g stroke="#ccc8b8" fill="none"><path d="M30 68H1050 M275 94V304 M542 94V304 M809 94V304"/></g>
+<!-- Three emitted primary spectra -->
+<g fill="none" stroke-width="4"><path d="M37 169Q55 169 64 130T82 155Q89 169 105 169" stroke="#4979a6"/><path d="M75 169Q102 169 116 125T141 155Q149 169 170 169" stroke="#528551"/><path d="M138 169Q160 169 180 128T207 147Q215 169 249 169" stroke="#ba6447"/></g>
+<!-- Layer response curves over log exposure -->
+<g fill="none" stroke-width="4"><path d="M302 172C352 172 359 163 386 145S449 98 512 100" stroke="#38818b"/><path d="M302 161C345 161 367 148 392 130S452 90 512 92" stroke="#a9597b"/><path d="M302 148C353 148 374 126 407 108S470 83 512 85" stroke="#ab8129"/></g>
+<!-- Illuminated negative -->
+<g fill="none" stroke-linecap="round"><g stroke="#ad8438" stroke-width="4"><path d="M569 112h63m-63 22h63m-63 22h63"/></g><path d="M641 94l25 8v74l-25-8z" fill="#a85e40" stroke="#6d4033" stroke-width="3"/><g stroke="#96764c"><path d="M677 112h99" stroke-width="3"/><path d="M677 134h99" stroke-width="1"/><path d="M677 156h99" stroke-width="5"/></g></g>
+<!-- Enlarged print under viewing light -->
+<g transform="translate(864 85) rotate(4 65 45)"><rect width="138" height="93" fill="#fffdfa" stroke="#878474" stroke-width="2"/><rect x="8" y="8" width="122" height="70" fill="#c3d1cd"/><circle cx="103" cy="25" r="9" fill="#e5c187"/><path d="M8 67l30-31 22 21 19-14 51 28v7H8z" fill="#5d7566"/></g>
+<g font-family="Georgia,serif" font-size="22" fill="#262b25"><text x="32" y="213">1 · Expose film</text><text x="301" y="213">2 · Develop dyes</text><text x="568" y="213">3 · Transmit light</text><text x="834" y="213">4 · Make the print</text></g>
+<g font-family="Arial,sans-serif" font-size="16" fill="#475247">
+<text x="32" y="244"><tspan x="32">Linear RGB sets the display</tspan><tspan x="32" dy="23">light. Each film layer absorbs</tspan><tspan x="32" dy="23">a different spectrum.</tspan></text>
+<text x="301" y="244"><tspan x="301">Portra 400 response curves</tspan><tspan x="301" dy="23">turn layer exposures into</tspan><tspan x="301" dy="23">cyan, magenta and yellow dye.</tspan></text>
+<text x="568" y="244"><tspan x="568">The base and dyes filter the</tspan><tspan x="568" dy="23">enlarger lamp at each</tspan><tspan x="568" dy="23">wavelength: T = 10⁻ᴰ.</tspan></text>
+<text x="834" y="244"><tspan x="834">Endura paper responds to</tspan><tspan x="834" dy="23">the transmitted light. D50</tspan><tspan x="834" dy="23">viewing light reveals the print.</tspan></text></g></svg>

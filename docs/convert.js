@@ -74,9 +74,28 @@ function apply(pixels, size, table, curves, width, maskRow) {
   }
 }
 
+const spectralTables = new Map();
+
+async function spectralTable(stage) {
+  if (!['exposure', 'dyes', 'negative', 'print'].includes(stage)) throw new Error('Unknown spectral stage.');
+  if (!spectralTables.has(stage)) {
+    const response = await fetch('./physics/' + stage + '.bin');
+    if (!response.ok) throw new Error('Could not load this spectral stage. Please retry.');
+    const table = new Uint8Array(await response.arrayBuffer());
+    if (table.length !== 65 ** 3 * 3) throw new Error('Incomplete spectral table. Please reload.');
+    spectralTables.set(stage, table);
+  }
+  return spectralTables.get(stage);
+}
+
 let cachedSelection, cachedMask;
-async function convert({id, pixels, width, height, selection, recipe, pipeline, calibrated, preview, branch}) {
+async function convert({id, pixels, width, height, selection, recipe, pipeline, calibrated, preview, branch, physicalStage}) {
   try {
+    if (pipeline === 'physics') {
+      apply(pixels, 65, await spectralTable(physicalStage), null, width);
+      self.postMessage({id, pixels}, [pixels.buffer]);
+      return;
+    }
     if (pipeline === 'negative') {
       const {negativePipeline} = await import('./negative.js');
       // Keep the intermediate visible while the full-size canvas shows the print.

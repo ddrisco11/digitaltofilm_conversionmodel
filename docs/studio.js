@@ -2,6 +2,7 @@ const $ = id => document.getElementById(id);
 const stage = $('stage'), frame = $('frame'), original = $('original'), edited = $('edited');
 const status = $('status'), save = $('save'), split = $('split');
 const pipeline = document.body.dataset.pipeline;
+const physics = pipeline === 'physics';
 const negative = pipeline === 'negative';
 const worker = new Worker('./convert.js', {type: 'module'});
 let job = 0, selection = 0, fileName = 'park-group', ready = false;
@@ -26,13 +27,15 @@ function convert() {
     if (branch !== 'baseline') $('calibrated').checked = true;
     $('result-label').textContent = preview ? 'Negative preview' : 'Final print';
   }
+  const physicalStage = document.querySelector('input[name="stage"]:checked');
+  if (physics) $('result-label').textContent = physicalStage.closest('label').querySelector('strong').textContent;
   if (!ready) return;
   const id = ++job;
   save.disabled = true;
-  status.textContent = negative ? 'Rendering the negative pipeline…' : 'Detecting foreground and applying recipe…';
+  status.textContent = physics ? 'Rendering spectral stage…' : negative ? 'Rendering the negative pipeline…' : 'Detecting foreground and applying recipe…';
   try {
     const pixels = original.getContext('2d').getImageData(0, 0, original.width, original.height).data;
-    worker.postMessage({id, pixels, pipeline, calibrated: negative && $('calibrated').checked, preview, width: original.width, height: original.height, selection, branch, recipe: negative ? null : recipe()}, [pixels.buffer]);
+    worker.postMessage({id, pixels, pipeline, calibrated: negative && $('calibrated').checked, preview, width: original.width, height: original.height, selection, branch, physicalStage: physicalStage?.value, recipe: pipeline === 'selective' ? recipe() : null}, [pixels.buffer]);
   } catch {
     status.textContent = 'This image exceeds your browser’s memory limit. Try a smaller copy.';
   }
@@ -95,12 +98,12 @@ $('file').onchange = event => {
   if (file) openImage(file);
   event.target.value = '';
 };
-for (const control of document.querySelectorAll('input[name="recipe"], #pipeline, #branch, #calibrated, #preview-negative')) control.onchange = convert;
+for (const control of document.querySelectorAll('input[name="recipe"], input[name="stage"], #pipeline, #branch, #calibrated, #preview-negative')) control.onchange = convert;
 stage.ondragover = e => { e.preventDefault(); stage.classList.add('over'); };
 stage.ondragleave = () => stage.classList.remove('over');
 stage.ondrop = e => { e.preventDefault(); stage.classList.remove('over'); if (e.dataTransfer.files[0]) openImage(e.dataTransfer.files[0]); };
 save.onclick = () => {
-  const suffix = negative
+  const suffix = physics ? 'spectral-' + document.querySelector('input[name="stage"]:checked').value : negative
     ? [ 'nph400', $('branch').value, $('calibrated').checked ? 'balanced' : 'raw', $('preview-negative').checked ? 'negative-preview' : 'print' ].join('-')
     : recipe();
   const name = fileName + '-' + suffix + '.jpg';

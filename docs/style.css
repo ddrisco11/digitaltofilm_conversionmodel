@@ -22,3 +22,7 @@ header{border-bottom:1px solid var(--line)}main,.mast{max-width:1440px;margin:au
 .lab-workspace .stage{height:clamp(260px,29vw,430px);border-top:1px solid #53564b}
 .lab-workspace #edited{position:static;inset:auto;clip-path:none;object-fit:contain}
 @media(max-width:700px){.experiments{grid-template-columns:1fr}.experiment img{aspect-ratio:2}.lab-workspace .caption{flex-wrap:wrap}}
+
+.demo-tabs{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1.2rem}.demo-tabs a{color:var(--ink);font-size:.9rem;text-decoration:none;padding:.4em 0}.demo-tabs a[aria-current]{border-bottom:2px solid var(--green);font-weight:700}.demo-tabs a:hover{text-decoration:underline}
+.process-guide{margin:1rem 0}.process-guide summary{cursor:pointer}.process-guide img{width:100%;height:auto;margin-top:1rem}
+@media(min-width:900px){.experiments{grid-template-columns:repeat(3,minmax(0,1fr))}}

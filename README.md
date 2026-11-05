@@ -8,6 +8,16 @@ A browser-based iPhone photo converter. Choose a film-inspired recipe, compare i
 
 The right panel shows Classic Negative with one pass on the foreground and two on the background.
 
+## Spectral darkroom
+
+I built a four-stage, deterministic simulation of photographing an image on a display. I choose one film exposure and enlarger balance for the entire photo. [Open the spectral darkroom →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/physics.html)
+
+![Four-stage diagram: display light exposes Portra 400; development forms cyan, magenta and yellow dyes; the negative filters an enlarger lamp; Endura paper produces the viewed print.](docs/physics/path.svg)
+
+I integrate display emission against film sensitivity over **59 wavelengths (405–695 nm)**. The negative’s base and dyes determine how much light reaches the paper at each wavelength. A 3200 K enlarger exposes the paper, and a D50 viewing light determines its rendered color. The demo lets you inspect and export the layer exposure, dye map, light-box negative, or final print. The first two views use illustrative scales.
+
+The browser interpolates compact lookup tables precomputed from the spectral model. The Python implementation saves a full-resolution dye negative that the printer can read independently. The reference passed a 256-step gray ramp with zero luminance reversals. The park foliage still shifts toward olive; accuracy to a real print would require a matched physical exposure and print. [Implementation and credits](experiments/physics/README.md)
+
 ## Experimental synthetic negative lab
 
 From the [experiment chooser](https://ddrisco11.github.io/digitaltofilm_conversionmodel/), open the [Synthetic negative lab](https://ddrisco11.github.io/digitaltofilm_conversionmodel/negative.html). I built this mode to test whether a digital photo can pass through a film-like intermediate before a separate model renders the print. **Inspect negative** shows the intermediate in display colors. **Gray calibration** balances the negative writer against a virtual gray ramp. The download exports the current view as a JPEG. The Python experiment can also save the actual 16-bit negative.
