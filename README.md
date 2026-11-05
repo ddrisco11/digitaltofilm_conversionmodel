@@ -8,15 +8,13 @@ A browser-based iPhone photo converter. Choose a film-inspired recipe, compare i
 
 The right panel shows Classic Negative with one pass on the foreground and two on the background.
 
-## Spectral darkroom
+## Color emulsion lab
 
-I built a four-stage, deterministic simulation of photographing an image on a display. I choose one film exposure and enlarger balance for the entire photo. [Open the spectral darkroom →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/physics.html)
+I built a virtual color stock to explore how grain activation affects a print. I treat a photo as light emitted by a display, simulate three grain populations in each color layer, and pass the developed dyes to a separate paper model. I designed the layer responses, dye curves and paper response. [Open the color emulsion lab →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/physics.html)
 
-![Four-stage diagram: display light exposes Portra 400; development forms cyan, magenta and yellow dyes; the negative filters an enlarger lamp; Endura paper produces the viewed print.](docs/physics/path.svg)
+![Display exposure, grain activation, negative transmission and virtual print](docs/emulsion/path.svg)
 
-I integrate display emission against film sensitivity over **59 wavelengths (405–695 nm)**. The negative’s base and dyes determine how much light reaches the paper at each wavelength. A 3200 K enlarger exposes the paper, and a D50 viewing light determines its rendered color. The demo lets you inspect and export the layer exposure, dye map, light-box negative, or final print. The first two views use illustrative scales.
-
-The browser interpolates compact lookup tables precomputed from the spectral model. The Python implementation saves a full-resolution dye negative that the printer can read independently. The reference passed a 256-step gray ramp with zero luminance reversals. The park foliage still shifts toward olive; accuracy to a real print would require a matched physical exposure and print. [Implementation and credits](experiments/physics/README.md)
+I can inspect and export each stage. In the park portrait the blue shirt stays blue, while the leaves shift toward olive. A neutral ramp stays balanced in the mean response, so I use foliage and skin as separate color checks. [Model, parameter choices and reproduction instructions](experiments/emulsion/README.md)
 
 ## Experimental synthetic negative lab
 
