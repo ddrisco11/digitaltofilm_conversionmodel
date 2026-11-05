@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Turn an iPhone photo into a film-inspired rendition with learned color lookup tables. Convert photos locally in your browser.">
+<title>Synthetic negative lab · Digital to Film</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body data-pipeline="negative">
+<header><div class="mast"><a href="./">← All experiments</a><a href="https://github.com/ddrisco11/digitaltofilm_conversionmodel">View on GitHub ↗</a></div></header>
+<main>
+<div class="intro"><div><h1>Synthetic negative lab</h1><p>Follow the image from digital exposure to synthetic negative to final print.</p></div></div>
+<div class="workspace lab-workspace"><section class="viewer" aria-label="Negative and print inspection">
+<div class="lab-strip"><figure><canvas id="original" aria-label="Source photo"></canvas><figcaption>Digital source</figcaption></figure>
+<figure><canvas id="negative-thumb" aria-label="Synthetic negative"></canvas><figcaption>Synthetic negative</figcaption></figure></div>
+<div class="stage" id="stage"><canvas id="edited" aria-label="Rendered output"></canvas></div>
+<div class="caption"><span id="result-label">Final print</span><span id="filename">Group portrait in the park</span><span id="dimensions"></span></div>
+</section><aside aria-label="Print controls"><div id="lab"><h2>Print settings</h2>
+<label for="branch">DigitalFilm calibration</label>
+<select id="branch"><option value="baseline">Baseline · neither stage</option><option value="A">A · Negative writer only</option><option value="B">B · Print reader only</option><option value="C">C · Both stages</option></select>
+<div class="options"><label><input id="calibrated" type="checkbox" checked><span><strong>Gray calibration</strong><small>Balance the negative against a neutral gray ramp.</small></span></label>
+<label><input id="preview-negative" type="checkbox"><span><strong>Inspect negative</strong><small>Preview the intermediate before print rendering.</small></span></label></div></div>
+<div class="actions"><button id="open" type="button">Choose photo</button><input type="file" id="file" hidden accept=".heic,.heif,image/heic,image/heif,image/jpeg,image/png,image/webp"><p class="hint">JPEG, PNG, WebP or HEIC. Drop a photo onto the preview or choose a file.</p>
+<button type="button" id="save" disabled>Download JPEG <span aria-hidden="true">↓</span></button></div>
+<p id="status" role="status">Loading the sample…</p><p class="privacy">Your photo is processed on this device.</p>
+</aside></div><footer><a href="https://github.com/ddrisco11/digitaltofilm_conversionmodel/blob/main/DATASET.md">Sources &amp; credits ↗</a></footer>
+</main><script type="module" src="./studio.js"></script></body></html>

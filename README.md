@@ -2,7 +2,7 @@
 
 A browser-based iPhone photo converter. Choose a film-inspired recipe, compare it with the original, and export a full-resolution JPEG. Foreground subjects receive one pass of the chosen recipe and the background receives two. Subject detection and conversion run on your device.
 
-**[Try the live demo →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)** · [How I trained the converter](converter/README.md) · [Dataset and photo credits](DATASET.md)
+**[Choose a live experiment →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)** · [How I trained the converter](converter/README.md) · [Dataset and photo credits](DATASET.md)
 
 [![Group portrait in a park, original and Classic Negative](converter/park-cover.jpg)](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)
 
@@ -10,7 +10,7 @@ The right panel shows Classic Negative with one pass on the foreground and two o
 
 ## Experimental synthetic negative lab
 
-In the demo, choose **Synthetic negative lab** under **Pipeline**. I built this mode to test whether a digital photo can pass through a film-like intermediate before a separate model renders the print. **Inspect negative** shows the intermediate in display colors. **Gray calibration** balances the negative writer against a virtual gray ramp. The download exports the current view as a JPEG. The Python experiment can also save the actual 16-bit negative.
+From the [experiment chooser](https://ddrisco11.github.io/digitaltofilm_conversionmodel/), open the [Synthetic negative lab](https://ddrisco11.github.io/digitaltofilm_conversionmodel/negative.html). I built this mode to test whether a digital photo can pass through a film-like intermediate before a separate model renders the print. **Inspect negative** shows the intermediate in display colors. **Gray calibration** balances the negative writer against a virtual gray ramp. The download exports the current view as a JPEG. The Python experiment can also save the actual 16-bit negative.
 
 I approximated Fuji NPH400’s published density curves to generate the negative. The print reader sees only its 16-bit transmission values. I trained it on seven aligned negative/print pairs from three BlueNeg rolls. On two frames from a fourth roll, average absolute RGB error fell from 47.2 levels for a simple density stretch to 20.2 for the learned reader (0–255 scale). That measures the reader on real negatives. I still need matched digital, negative, and print captures to test end-to-end film fidelity. On the demo portrait, gray calibration brings the white shirt closer to neutral, while the foliage still shifts toward amber.
 

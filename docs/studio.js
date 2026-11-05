@@ -1,6 +1,8 @@
 const $ = id => document.getElementById(id);
 const stage = $('stage'), frame = $('frame'), original = $('original'), edited = $('edited');
 const status = $('status'), save = $('save'), split = $('split');
+const pipeline = document.body.dataset.pipeline;
+const negative = pipeline === 'negative';
 const worker = new Worker('./convert.js', {type: 'module'});
 let job = 0, selection = 0, fileName = 'park-group', ready = false;
 const recipe = () => document.querySelector('input[name="recipe"]:checked').value;
@@ -11,25 +13,26 @@ function fitFrame() {
   frame.style.width = Math.round(scale * original.width) + 'px';
   frame.style.height = Math.round(scale * original.height) + 'px';
 }
-new ResizeObserver(fitFrame).observe(stage);
-split.oninput = () => frame.style.setProperty('--cut', split.value + '%');
+if (!negative) {
+  new ResizeObserver(fitFrame).observe(stage);
+  split.oninput = () => frame.style.setProperty('--cut', split.value + '%');
+}
 
 function convert() {
-  const negative = $('pipeline').value === 'negative';
-  const branch = $('branch').value;
-  $('calibrated').disabled = branch !== 'baseline';
-  if (branch !== 'baseline') $('calibrated').checked = true;
-  $('recipes').hidden = negative;
-  $('lab').hidden = !negative;
-  $('description').textContent = negative ? 'Expose a synthetic negative, then render a print from it.' : 'One film pass on the subject. Two on the background.';
-  $('result-label').textContent = negative ? ($('preview-negative').checked ? 'Negative' : 'Print') : 'Film';
+  const branch = negative ? $('branch').value : 'baseline';
+  const preview = negative && $('preview-negative').checked;
+  if (negative) {
+    $('calibrated').disabled = branch !== 'baseline';
+    if (branch !== 'baseline') $('calibrated').checked = true;
+    $('result-label').textContent = preview ? 'Negative preview' : 'Final print';
+  }
   if (!ready) return;
   const id = ++job;
   save.disabled = true;
   status.textContent = negative ? 'Rendering the negative pipeline…' : 'Detecting foreground and applying recipe…';
   try {
     const pixels = original.getContext('2d').getImageData(0, 0, original.width, original.height).data;
-    worker.postMessage({id, pixels, pipeline: $('pipeline').value, calibrated: $('calibrated').checked, preview: $('preview-negative').checked, width: original.width, height: original.height, selection, branch, recipe: recipe()}, [pixels.buffer]);
+    worker.postMessage({id, pixels, pipeline, calibrated: negative && $('calibrated').checked, preview, width: original.width, height: original.height, selection, branch, recipe: negative ? null : recipe()}, [pixels.buffer]);
   } catch {
     status.textContent = 'This image exceeds your browser’s memory limit. Try a smaller copy.';
   }
@@ -40,7 +43,12 @@ worker.onmessage = ({data}) => {
   if (data.error) { status.textContent = data.error; return; }
   edited.getContext('2d').putImageData(new ImageData(data.pixels, edited.width, edited.height), 0, 0);
   save.disabled = false;
-  split.disabled = false;
+  if (split) split.disabled = false;
+  if (negative && data.thumb) {
+    const thumb = $('negative-thumb');
+    thumb.width = data.thumbWidth; thumb.height = data.thumbHeight;
+    thumb.getContext('2d').putImageData(new ImageData(data.thumb, thumb.width, thumb.height), 0, 0);
+  }
   status.textContent = '';
 };
 worker.onerror = () => { status.textContent = 'Conversion failed. Reload and try a smaller image.'; };
@@ -49,7 +57,8 @@ async function openImage(file, sample = false) {
   const id = ++selection;
   ++job;
   ready = false;
-  save.disabled = split.disabled = true;
+  save.disabled = true;
+  if (split) split.disabled = true;
   status.textContent = 'Opening photo…';
   try {
     let bitmap;
@@ -72,7 +81,7 @@ async function openImage(file, sample = false) {
     edited.getContext('2d').drawImage(original, 0, 0);
     $('filename').textContent = sample ? 'Group portrait in the park' : file.name;
     $('dimensions').textContent = original.width + ' × ' + original.height;
-    fitFrame();
+    if (!negative) fitFrame();
     ready = true;
     convert();
   } catch {
@@ -91,7 +100,7 @@ stage.ondragover = e => { e.preventDefault(); stage.classList.add('over'); };
 stage.ondragleave = () => stage.classList.remove('over');
 stage.ondrop = e => { e.preventDefault(); stage.classList.remove('over'); if (e.dataTransfer.files[0]) openImage(e.dataTransfer.files[0]); };
 save.onclick = () => {
-  const suffix = $('pipeline').value === 'negative'
+  const suffix = negative
     ? [ 'nph400', $('branch').value, $('calibrated').checked ? 'balanced' : 'raw', $('preview-negative').checked ? 'negative-preview' : 'print' ].join('-')
     : recipe();
   const name = fileName + '-' + suffix + '.jpg';

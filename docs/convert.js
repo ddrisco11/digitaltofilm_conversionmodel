@@ -79,8 +79,20 @@ async function convert({id, pixels, width, height, selection, recipe, pipeline, 
   try {
     if (pipeline === 'negative') {
       const {negativePipeline} = await import('./negative.js');
+      // Keep the intermediate visible while the full-size canvas shows the print.
+      const scale = Math.min(1, 420 / Math.max(width, height));
+      const thumbWidth = Math.max(1, Math.round(width*scale));
+      const thumbHeight = Math.max(1, Math.round(height*scale));
+      const thumb = new Uint8ClampedArray(thumbWidth * thumbHeight * 4);
+      for (let y=0; y<thumbHeight; y++) {
+        for (let x=0; x<thumbWidth; x++) {
+          const i=4*(Math.floor(y*height/thumbHeight)*width+Math.floor(x*width/thumbWidth));
+          thumb.set(pixels.subarray(i,i+4),4*(y*thumbWidth+x));
+        }
+      }
+      await negativePipeline(thumb, calibrated, true, branch);
       await negativePipeline(pixels, calibrated, preview, branch);
-      self.postMessage({id, pixels}, [pixels.buffer]);
+      self.postMessage({id, pixels, thumb, thumbWidth, thumbHeight}, [pixels.buffer, thumb.buffer]);
       return;
     }
     weights ??= Promise.all([load('./model.json'), load('./lut.bin', true)]);
