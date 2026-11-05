@@ -1,5 +1,7 @@
 # Film and digital photo pairs
 
+The [iPhone film converter](converter/README.md) includes trained color models, a full-resolution HEIC/JPEG command, held-out FilmSet scores and a blind review tool.
+
 The [pair index](pairs.csv) lists 39 film/digital comparisons and points to all 78 local image files. Each row gives the photographer or project credits, the source for each side, and the pairing evidence. Framing, poses, timing and processing vary. For a scene-level train/test split, keep repeated views and sessions together using `scene_group`.
 
 | Collection | Pairs | Local files |

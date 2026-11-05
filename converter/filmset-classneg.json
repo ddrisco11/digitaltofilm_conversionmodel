@@ -1,0 +1,12 @@
+{
+  "dataset": "xuhangc/filmset",
+  "version": 1,
+  "recipe": "ClassNeg",
+  "train_pairs": 160,
+  "test_pairs": 48,
+  "mean_per_image_psnr_db_srgb": {
+    "input": 25.977,
+    "fixed": 37.485,
+    "adaptive": 37.733
+  }
+}
