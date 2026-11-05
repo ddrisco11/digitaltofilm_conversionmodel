@@ -30,6 +30,8 @@
 </div>
 </div>
 <div id="lab" hidden><h2>Negative lab</h2>
+<label for="branch">DigitalFilm calibration</label>
+<select id="branch"><option value="baseline">Baseline · neither stage</option><option value="A">A · Negative writer only</option><option value="B">B · Print reader only</option><option value="C">C · Both stages</option></select>
 <div class="options"><label><input id="calibrated" type="checkbox" checked><span><strong>Gray calibration</strong><small>Balance the negative against a neutral gray ramp.</small></span></label>
 <label><input id="preview-negative" type="checkbox"><span><strong>Inspect negative</strong><small>Preview the intermediate before print rendering.</small></span></label></div></div>
 <div class="actions"><button id="open" type="button">Choose photo</button><input type="file" id="file" hidden accept=".heic,.heif,image/heic,image/heif,image/jpeg,image/png,image/webp"><p class="hint">JPEG, PNG, WebP or HEIC. Drop a photo onto the preview or choose a file.</p>

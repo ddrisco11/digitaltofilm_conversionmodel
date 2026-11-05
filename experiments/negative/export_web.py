@@ -1,6 +1,7 @@
 """Export the exact 8-bit input → 16-bit transmission curves and print-reader weights."""
 import json
 from negative_pipeline import HERE, make_negative, np
+from digitalfilm import parameters, writer_adjust
 from neutral import apply, calibrate
 
 with np.load(HERE / "model.npz") as model:
@@ -9,6 +10,9 @@ with np.load(HERE / "model.npz") as model:
     raw = make_negative(rgb, model)
     balanced = apply(raw, model, calibrate(model))
     data = {key: model[key].tolist() for key in ("lo", "hi", "weights")}
-    for name, curve in [("raw", raw), ("balanced", balanced)]:
+    adapter = parameters()
+    data["readerAdapter"] = adapter["reader"]
+    writer = writer_adjust(balanced, model, adapter["writer"])
+    for name, curve in [("raw", raw), ("balanced", balanced), ("writer", writer)]:
         data[name] = np.rint(curve[:, 0, :] * 65535).astype(int).T.tolist()
     (HERE.parents[1] / "docs/negative-model.json").write_text(json.dumps(data) + "\n")

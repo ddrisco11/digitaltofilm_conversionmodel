@@ -9,4 +9,4 @@ header{border-bottom:1px solid var(--line)}main,.mast{max-width:1440px;margin:au
 
 .viewer{min-width:0}
 
-#pipeline{width:100%;margin:6px 0 20px;padding:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;border-radius:3px}
+#pipeline, #branch{width:100%;margin:6px 0 20px;padding:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;border-radius:3px}

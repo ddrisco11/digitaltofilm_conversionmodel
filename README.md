@@ -16,6 +16,14 @@ I approximated Fuji NPH400’s published density curves to generate the negative
 
 ![Park portrait comparison across the original converter and both synthetic negative calibrations](experiments/negative/comparison.jpg)
 
+### Where does DigitalFilm calibration help?
+
+In the lab, I can switch the **DigitalFilm calibration** selector between the baseline, **A** (negative writer only), **B** (print reader only), and **C** (both). All three use the same gray-calibrated starting point and the reader receives only the negative. I fitted the two adjustments independently on the same 256 digital photos and 256 unpaired Gold 200 references. C applies both at their fitted strengths.
+
+![Same portrait with baseline, writer-only, reader-only and both-stage DigitalFilm calibration](experiments/negative/branch-comparison.jpg)
+
+On a separate 64 digital and 64 film image holdout, the mean gap between output and reference RGB quantiles was **24.21** for the baseline, **8.14** for A, **13.38** for B and **33.07** for C (0–255 scale, lower is closer). A best matched this color statistic; C stacked the corrections and washed out highlights on the park portrait. Images are unpaired, so the metric measures agreement between groups of images. It cannot establish stock fidelity or which result looks best.
+
 BlueNeg image credit: **Copyrighted by Tien-Tsin Wong**. [Experiment, code and sources](experiments/negative/README.md) · [BlueNeg dataset](https://huggingface.co/datasets/ttgroup/blueneg-release) · [Per-frame scores](experiments/negative/scores.json)
 
 ## From training pairs to a browser demo

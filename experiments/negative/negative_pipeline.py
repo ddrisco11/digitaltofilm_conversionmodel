@@ -50,6 +50,8 @@ if __name__=='__main__':
     parser.add_argument('input',type=Path)
     parser.add_argument('output',type=Path)
     parser.add_argument('--gray-calibration',action='store_true',help='Calibrate synthetic scan exposure and channel balance on a virtual gray ramp (expose only).')
+    parser.add_argument('--branch', choices=['baseline','A','B','C'], default='baseline',
+                        help='DigitalFilm adapter placement: A writer, B reader, C both. All three use gray calibration.')
     args=parser.parse_args()
     if args.gray_calibration and args.stage!='expose':parser.error('Gray calibration belongs to expose.')
     with np.load(HERE/'model.npz') as model:
@@ -57,13 +59,19 @@ if __name__=='__main__':
             if args.output.suffix.lower()!='.png':parser.error('Use PNG for the 16-bit intermediate.')
             rgb=np.asarray(Image.open(args.input).convert('RGB'),dtype=np.float32)/255
             negative=make_negative(rgb,model)
-            if args.gray_calibration:
+            if args.gray_calibration or args.branch!='baseline':
                 from neutral import calibrate,apply
                 negative=apply(negative,model,calibrate(model))
+            if args.branch in ('A','C'):
+                from digitalfilm import parameters,writer_adjust
+                negative=writer_adjust(negative,model,parameters()['writer'])
             assert cv2.imwrite(str(args.output),np.round(negative[:,:,::-1]*65535).astype('uint16'))
         else:
             raw=cv2.imread(str(args.input),cv2.IMREAD_UNCHANGED)
             if raw is None or raw.dtype!=np.uint16 or raw.ndim!=3 or raw.shape[2]!=3:
                 parser.error('Developer input must be a 16-bit three-channel negative.')
             rgb=develop(raw[:,:,::-1].astype('float32')/65535,model)
+            if args.branch in ('B','C'):
+                from digitalfilm import parameters,reader_adjust
+                rgb=reader_adjust(rgb,parameters()['reader'])
             Image.fromarray(np.round(rgb*255).astype('uint8')).save(args.output,quality=95)

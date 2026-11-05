@@ -75,11 +75,11 @@ function apply(pixels, size, table, curves, width, maskRow) {
 }
 
 let cachedSelection, cachedMask;
-async function convert({id, pixels, width, height, selection, recipe, pipeline, calibrated, preview}) {
+async function convert({id, pixels, width, height, selection, recipe, pipeline, calibrated, preview, branch}) {
   try {
     if (pipeline === 'negative') {
       const {negativePipeline} = await import('./negative.js');
-      await negativePipeline(pixels, calibrated, preview);
+      await negativePipeline(pixels, calibrated, preview, branch);
       self.postMessage({id, pixels}, [pixels.buffer]);
       return;
     }
