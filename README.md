@@ -1,12 +1,12 @@
 # Digital to Film
 
-A browser-based iPhone photo converter by David Driscoll. Choose a film-inspired recipe, compare it with the original, and export a full-resolution JPEG. Foreground subjects receive one pass of the chosen recipe and the background receives two. Subject detection and conversion run on your device.
+A browser-based iPhone photo converter. Choose a film-inspired recipe, compare it with the original, and export a full-resolution JPEG. Foreground subjects receive one pass of the chosen recipe and the background receives two. Subject detection and conversion run on your device.
 
 **[Try the live demo →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)** · [How the converter was trained](converter/README.md) · [Dataset and photo credits](DATASET.md)
 
 [![Group portrait in a park, original and Classic Negative](converter/park-cover.jpg)](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)
 
-Demo photo supplied by David Driscoll. The right panel shows Classic Negative with one pass on the foreground and two on the background.
+The right panel shows Classic Negative with one pass on the foreground and two on the background.
 
 ## From training pairs to a browser demo
 
