@@ -8,3 +8,5 @@ header{border-bottom:1px solid var(--line)}main,.mast{max-width:1440px;margin:au
 @media(max-width:780px){.workspace{grid-template-columns:1fr}.stage{height:clamp(240px,56vw,420px)}.method{display:none}.intro{padding-top:32px}.options{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mast{height:54px}footer{align-items:flex-start}}
 
 .viewer{min-width:0}
+
+#pipeline{width:100%;margin:6px 0 20px;padding:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;border-radius:3px}

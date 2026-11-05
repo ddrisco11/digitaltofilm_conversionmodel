@@ -1,0 +1,16 @@
+[
+  {
+    "frame": "19960809B-14-new-orleans-siggraph96",
+    "stretch_mae_255": 54.9498777306605,
+    "stretch_psnr_db": 12.93645018862222,
+    "developer_mae_255": 23.20136070251465,
+    "developer_psnr_db": 18.913259506225586
+  },
+  {
+    "frame": "19960809B-15-new-orleans-siggraph96",
+    "stretch_mae_255": 39.43411445765977,
+    "stretch_psnr_db": 15.212931218438921,
+    "developer_mae_255": 17.21499252319336,
+    "developer_psnr_db": 21.743682861328125
+  }
+]

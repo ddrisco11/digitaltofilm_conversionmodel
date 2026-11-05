@@ -8,6 +8,16 @@ A browser-based iPhone photo converter. Choose a film-inspired recipe, compare i
 
 The right panel shows Classic Negative with one pass on the foreground and two on the background.
 
+## Experimental synthetic negative lab
+
+In the demo, choose **Synthetic negative lab** under **Pipeline**. I built this mode to test whether a digital photo can pass through a film-like intermediate before a separate model renders the print. **Inspect negative** shows the intermediate in display colors. **Gray calibration** balances the negative writer against a virtual gray ramp. The download exports the current view as a JPEG. The Python experiment can also save the actual 16-bit negative.
+
+I approximated Fuji NPH400’s published density curves to generate the negative. The print reader sees only its 16-bit transmission values. I trained it on seven aligned negative/print pairs from three BlueNeg rolls. On two frames from a fourth roll, average absolute RGB error fell from 47.2 levels for a simple density stretch to 20.2 for the learned reader (0–255 scale). That measures the reader on real negatives. I still need matched digital, negative, and print captures to test end-to-end film fidelity. On the demo portrait, gray calibration brings the white shirt closer to neutral, while the foliage still shifts toward amber.
+
+![Park portrait comparison across the original converter and both synthetic negative calibrations](experiments/negative/comparison.jpg)
+
+BlueNeg image credit: **Copyrighted by Tien-Tsin Wong**. [Experiment, code and sources](experiments/negative/README.md) · [BlueNeg dataset](https://huggingface.co/datasets/ttgroup/blueneg-release) · [Per-frame scores](experiments/negative/scores.json)
+
 ## From training pairs to a browser demo
 
 I wanted to see how much of a film recipe a small color transform could reproduce. I started with a fixed color lookup table, then trained a second model that adjusts its table to the brightness, contrast and red–blue balance of each photograph. The browser measures those properties on a 64 × 64 preview and applies the resulting table to the full-resolution image in a worker.

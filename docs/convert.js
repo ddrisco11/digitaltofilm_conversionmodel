@@ -75,8 +75,14 @@ function apply(pixels, size, table, curves, width, maskRow) {
 }
 
 let cachedSelection, cachedMask;
-async function convert({id, pixels, width, height, selection, recipe}) {
+async function convert({id, pixels, width, height, selection, recipe, pipeline, calibrated, preview}) {
   try {
+    if (pipeline === 'negative') {
+      const {negativePipeline} = await import('./negative.js');
+      await negativePipeline(pixels, calibrated, preview);
+      self.postMessage({id, pixels}, [pixels.buffer]);
+      return;
+    }
     weights ??= Promise.all([load('./model.json'), load('./lut.bin', true)]);
     const [model, data] = await weights;
     const curves = recipe === 'gold' ? model.curves.map(toneCurve) : null;

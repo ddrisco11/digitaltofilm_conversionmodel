@@ -1,0 +1,68 @@
+{
+  "rev": "b038a1ae68f42067ff12b5e79ddbe62919b7af23",
+  "rows": [
+    {
+      "id": "19960808B-03-new-orleans-siggraph96",
+      "roll": "19960808B",
+      "split": "train",
+      "negative": "negative-16bit/blue-intact/19960808B-03-new-orleans-siggraph96.dng",
+      "positive": "printed-16bit/blue-intact/19960808B-03-new-orleans-siggraph96.tif"
+    },
+    {
+      "id": "19960808B-05-new-orleans-siggraph96",
+      "roll": "19960808B",
+      "split": "train",
+      "negative": "negative-16bit/blue-intact/19960808B-05-new-orleans-siggraph96.dng",
+      "positive": "printed-16bit/blue-intact/19960808B-05-new-orleans-siggraph96.tif"
+    },
+    {
+      "id": "19960811B-25-arizona-london-bridge",
+      "roll": "19960811B",
+      "split": "train",
+      "negative": "negative-16bit/blue-intact/19960811B-25-arizona-london-bridge.dng",
+      "positive": "printed-16bit/blue-intact/19960811B-25-arizona-london-bridge.tif"
+    },
+    {
+      "id": "19960811B-34-laughlin",
+      "roll": "19960811B",
+      "split": "train",
+      "negative": "negative-16bit/blue-intact/19960811B-34-laughlin.dng",
+      "positive": "printed-16bit/blue-intact/19960811B-34-laughlin.tif"
+    },
+    {
+      "id": "19960812D-06-hoover-dam",
+      "roll": "19960812D",
+      "split": "train",
+      "negative": "negative-16bit/blue-intact/19960812D-06-hoover-dam.dng",
+      "positive": "printed-16bit/blue-intact/19960812D-06-hoover-dam.tif"
+    },
+    {
+      "id": "19960812D-17-las-vegas",
+      "roll": "19960812D",
+      "split": "train",
+      "negative": "negative-16bit/blue-intact/19960812D-17-las-vegas.dng",
+      "positive": "printed-16bit/blue-intact/19960812D-17-las-vegas.tif"
+    },
+    {
+      "id": "19960812D-02-hoover-dam",
+      "roll": "19960812D",
+      "split": "train",
+      "negative": "negative-16bit/blue-intact/19960812D-02-hoover-dam.dng",
+      "positive": "printed-16bit/blue-intact/19960812D-02-hoover-dam.tif"
+    },
+    {
+      "id": "19960809B-14-new-orleans-siggraph96",
+      "roll": "19960809B",
+      "split": "test",
+      "negative": "negative-16bit/blue-intact/19960809B-14-new-orleans-siggraph96.dng",
+      "positive": "printed-16bit/blue-intact/19960809B-14-new-orleans-siggraph96.tif"
+    },
+    {
+      "id": "19960809B-15-new-orleans-siggraph96",
+      "roll": "19960809B",
+      "split": "test",
+      "negative": "negative-16bit/blue-intact/19960809B-15-new-orleans-siggraph96.dng",
+      "positive": "printed-16bit/blue-intact/19960809B-15-new-orleans-siggraph96.tif"
+    }
+  ]
+}
