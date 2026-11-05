@@ -1,6 +1,6 @@
 # Digital to Film
 
-A browser-based iPhone photo converter by David Driscoll. Choose a film-inspired recipe, compare it with the original, and export a full-resolution JPEG. The conversion runs on your device.
+A browser-based iPhone photo converter by David Driscoll. Choose a film-inspired recipe, compare it with the original, and export a full-resolution JPEG. Foreground subjects receive one pass of the chosen recipe and the background receives two. Subject detection and conversion run on your device.
 
 **[Try the live demo →](https://ddrisco11.github.io/lomoplusdigital-pairs/)** · [How the converter was trained](converter/README.md) · [Dataset and photo credits](DATASET.md)
 
@@ -16,7 +16,7 @@ I built this project to see how much of a film recipe a small color transform co
 
 ## Results
 
-On 48 held-out FilmSet pairs, the scene-aware model improved mean per-image PSNR by 0.25 dB over the fixed table. Higher values indicate closer agreement with the published Classic Negative recipe.
+In the original single-pass color benchmark on 48 held-out FilmSet pairs, the scene-aware model improved mean per-image PSNR by 0.25 dB over the fixed table. Higher values indicate closer agreement with the published Classic Negative recipe.
 
 | Method | PSNR |
 | --- | ---: |

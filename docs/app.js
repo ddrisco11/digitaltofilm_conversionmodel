@@ -14,33 +14,14 @@ function fitFrame() {
 new ResizeObserver(fitFrame).observe(stage);
 split.oninput = () => frame.style.setProperty('--cut', split.value + '%');
 
-function descriptor(image) {
-  const small = document.createElement('canvas');
-  small.width = small.height = 64;
-  const ctx = small.getContext('2d');
-  ctx.imageSmoothingQuality = 'high';
-  ctx.drawImage(image, 0, 0, 64, 64);
-  const {data} = ctx.getImageData(0, 0, 64, 64);
-  let mean = 0, squares = 0, cast = 0;
-  for (let i = 0; i < data.length; i += 4) {
-    const luma = (0.2126*data[i] + 0.7152*data[i+1] + 0.0722*data[i+2]) / 255;
-    mean += luma;
-    squares += luma*luma;
-    cast += (data[i]-data[i+2])/255;
-  }
-  const n = data.length / 4;
-  mean /= n;
-  return [mean, Math.sqrt(Math.max(0, squares/n - mean*mean)), cast/n];
-}
-
 function convert() {
   if (!ready) return;
   const id = ++job;
   save.disabled = true;
-  status.textContent = 'Applying recipe…';
+  status.textContent = 'Detecting foreground and applying recipe…';
   try {
     const pixels = original.getContext('2d').getImageData(0, 0, original.width, original.height).data;
-    worker.postMessage({id, pixels, context: descriptor(original), recipe: recipe()}, [pixels.buffer]);
+    worker.postMessage({id, pixels, width: original.width, height: original.height, selection, recipe: recipe()}, [pixels.buffer]);
   } catch {
     status.textContent = 'This image exceeds your browser’s memory limit. Try a smaller copy.';
   }

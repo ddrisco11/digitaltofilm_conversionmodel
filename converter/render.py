@@ -67,6 +67,19 @@ def render(image, model, variant):
     return image.filter(lut)
 
 
+def selective_render(image, model, variant, curves=None, mask=None):
+    from foreground import foreground_mask
+    if mask is None:
+        mask = foreground_mask(image)
+    one = render(image, model, variant)
+    if curves is not None:
+        one = gold_adjustment(one, curves)
+    two = render(one, model, variant)
+    if curves is not None:
+        two = gold_adjustment(two, curves)
+    return Image.composite(one, two, mask)
+
+
 def save_rgb(image, path):
     path = Path(path)
     options = {"icc_profile": SRGB.tobytes()}
@@ -88,9 +101,9 @@ if __name__ == "__main__":
         parser.error("--gold requires --variant adaptive")
     if args.input.resolve() == args.output.resolve():
         parser.error("Choose a separate output path.")
-    with np.load(args.model) as model:
-        result = render(read_rgb(args.input), model, args.variant)
+    curves = None
     if args.gold:
-        calibration = json.loads(Path(__file__).with_name("digitalfilm-gold.json").read_text())
-        result = gold_adjustment(result, calibration["curves"])
+        curves = json.loads(Path(__file__).with_name("digitalfilm-gold.json").read_text())["curves"]
+    with np.load(args.model) as model:
+        result = selective_render(read_rgb(args.input), model, args.variant, curves)
     save_rgb(result, args.output)

@@ -12,7 +12,8 @@ import tempfile
 
 import numpy as np
 from PIL import Image
-from render import MODEL, gold_adjustment, read_rgb, render
+from foreground import foreground_mask
+from render import MODEL, read_rgb, selective_render
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -50,10 +51,12 @@ def build(output):
             source = read_digital(ROOT / row["digital_path"])
             analog = read_rgb(ROOT / row["analog_path"])
             # Render each scene through the same entry points as full-size export.
-            adaptive = render(source, model, "adaptive")
-            candidates = [("Fixed Classic Negative", render(source, model, "fixed")),
-                          ("Adaptive Classic Negative", adaptive),
-                          ("Experimental Gold", gold_adjustment(adaptive, curves))]
+            mask = foreground_mask(source)
+            candidates = [
+                ("Fixed Classic Negative", selective_render(source, model, "fixed", mask=mask)),
+                ("Adaptive Classic Negative", selective_render(source, model, "adaptive", mask=mask)),
+                ("Experimental Gold", selective_render(source, model, "adaptive", curves, mask)),
+            ]
             rng.shuffle(candidates)
             cells = preview(analog, "Film reference")
             key = []

@@ -18,6 +18,8 @@ python3 -m venv .venv
 .venv/bin/python converter/render.py input.HEIC fixed-baseline.jpg --variant fixed
 ```
 
+The Python converter, browser demo and review builder detect foreground on the original image using the compact U²-Net model. Each full recipe runs once on the original and again on the first result. A soft mask blends the two results so the subject receives one pass and the background receives two. Difficult edges and low-contrast subjects can receive a partial second pass. When the mask is empty, the whole scene receives two passes. Training and recipe benchmarks use the single-pass color transform. [Foreground model and runtime credits](../docs/vendor/foreground/README.md)
+
 The pipeline honors EXIF orientation and embedded ICC profiles, treats untagged RGB as sRGB, and saves a tagged SDR image. Export strips source metadata. This pilot handles color and tone. Grain, halation and HDR output are outside its scope.
 
 ## Training and test results
@@ -30,7 +32,7 @@ Both Classic Negative models use paired sRGB input and target samples. The fixed
 | Fixed Classic Negative LUT | 37.485 dB |
 | Adaptive Classic Negative LUT | 37.733 dB |
 
-Scores measure agreement with the paired software recipe in 8-bit sRGB. The adaptive model gained 0.25 dB over the fixed model on this subset. Real-film resemblance and user preference require separate review.
+These single-pass scores measure agreement with the paired software recipe in 8-bit sRGB. The adaptive model gained 0.25 dB over the fixed model on this subset. Real-film resemblance and user preference require separate review.
 
 **FilmSet.** The fit used 160 pairs from the official training split. The 48 test pairs were chosen from the official test split by filename hash. Training excluded those filenames. The manifest records every archive member. Zinuo Li, Xuhang Chen, Shuqiang Wang and Chi-Man Pun created FilmSet. [Dataset version 1](https://www.kaggle.com/datasets/xuhangc/filmset/versions/1) · [Paper](https://www.ijcai.org/proceedings/2023/129) · [Pilot manifest](filmset-classneg.csv) · [Scores](filmset-classneg.json)
 
