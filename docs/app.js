@@ -2,7 +2,7 @@ const $ = id => document.getElementById(id);
 const stage = $('stage'), frame = $('frame'), original = $('original'), edited = $('edited');
 const status = $('status'), save = $('save'), split = $('split');
 const worker = new Worker('./convert.js', {type: 'module'});
-let job = 0, selection = 0, fileName = 'Saas-Almagell', ready = false;
+let job = 0, selection = 0, fileName = 'park-group', ready = false;
 const recipe = () => document.querySelector('input[name="recipe"]:checked').value;
 
 function fitFrame() {
@@ -53,7 +53,7 @@ async function openImage(file, sample = false) {
       bitmap = await heicTo({blob: file, type: 'bitmap'});
     }
     if (id !== selection) { bitmap.close(); return; }
-    fileName = sample ? 'Saas-Almagell' : file.name.replace(/\.[^.]+$/, '');
+    fileName = sample ? 'park-group' : file.name.replace(/\.[^.]+$/, '');
     original.width = edited.width = bitmap.width;
     original.height = edited.height = bitmap.height;
     const ctx = original.getContext('2d', {willReadFrequently: true});
@@ -62,7 +62,7 @@ async function openImage(file, sample = false) {
     ctx.drawImage(bitmap, 0, 0);
     bitmap.close();
     edited.getContext('2d').drawImage(original, 0, 0);
-    $('filename').textContent = sample ? 'Saas-Almagell, Switzerland' : file.name;
+    $('filename').textContent = sample ? 'Group portrait in the park' : file.name;
     $('dimensions').textContent = original.width + ' × ' + original.height;
     fitFrame();
     ready = true;
@@ -92,7 +92,7 @@ save.onclick = () => {
   }, 'image/jpeg', 0.95);
 };
 try {
-  const response = await fetch('./alpine.jpg');
+  const response = await fetch('./park-group.jpg');
   if (!response.ok) throw new Error();
   const sample = await response.blob();
   if (!selection) await openImage(sample, true);

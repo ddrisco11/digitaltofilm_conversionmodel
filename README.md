@@ -4,9 +4,9 @@ A browser-based iPhone photo converter by David Driscoll. Choose a film-inspired
 
 **[Try the live demo →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)** · [How the converter was trained](converter/README.md) · [Dataset and photo credits](DATASET.md)
 
-[![Original and Classic Negative versions of a mountain panorama photographed on iPhone 13](converter/iphone-example.jpg)](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)
+[![Group portrait in a park, original and Classic Negative](converter/park-cover.jpg)](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)
 
-*Saas-Almagell – mountains 2*, photographed by Tiia Monto on iPhone 13. Resized for display and color graded on the right. [Original photograph](https://commons.wikimedia.org/wiki/File:Saas-Almagell_-_mountains_2.jpg) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+Demo photo supplied by David Driscoll. The right panel shows Classic Negative with one pass on the foreground and two on the background.
 
 ## From training pairs to a browser demo
 

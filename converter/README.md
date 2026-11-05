@@ -2,9 +2,9 @@
 
 The converter exports full-resolution SDR sRGB photographs. The default preset learns FilmSet’s Classic Negative rendering. A second experimental preset adjusts its tones using unpaired digital photographs and film references from the Gold 200 collection in DigitalFilm.
 
-![Public iPhone sample, original and converted](iphone-example.jpg)
+![Group portrait in a park, original and converted](park-cover.jpg)
 
-The example uses *Saas-Almagell - mountains 2* by Tiia Monto, photographed with an iPhone 13. The left panel is resized; the right panel also applies the scene-conditioned Classic Negative model. The composite is distributed under CC BY 4.0. [Original photograph](https://commons.wikimedia.org/wiki/File:Saas-Almagell_-_mountains_2.jpg) · [License](https://creativecommons.org/licenses/by/4.0/)
+Demo photo supplied by David Driscoll. The right panel shows Classic Negative with one pass on the foreground and two on the background.
 
 ## Convert an image
 
@@ -48,4 +48,4 @@ Download FilmSet v1 and unpack it. Download the Gold ZIP from the DigitalFilm da
 .venv/bin/python converter/review.py /path/to/blind-film-comparison.html
 ```
 
-The review builder requires the complete local collection, including the local-only photos. It selects the first entry for each recorded scene group and shuffles the three methods within each row. It produces an offline comparison with source credits and a revealable key. Each viewer can record a choice before revealing the methods. The repository tracks the code, model files, measurements, manifests and licensed illustration.
+The review builder requires the complete local collection, including the local-only photos. It selects the first entry for each recorded scene group and shuffles the three methods within each row. It produces an offline comparison with source credits and a revealable key. Each viewer can record a choice before revealing the methods. The repository tracks the code, model files, measurements, manifests and demo photograph.
