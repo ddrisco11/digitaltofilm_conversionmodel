@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Turn an iPhone photo into a film-inspired rendition with learned color lookup tables. Convert photos locally in your browser.">
+<title>Digital to Film · David Driscoll</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header><div class="mast"><span class="signature">David Driscoll</span><a href="https://github.com/ddrisco11/lomoplusdigital-pairs">View on GitHub ↗</a></div></header>
+<main>
+<div class="intro"><div><h1>Digital to <em>Film</em></h1><p>A film-inspired color converter for iPhone photographs.</p></div><a class="method" href="https://github.com/ddrisco11/lomoplusdigital-pairs/tree/main/converter">How it works ↗</a></div>
+<div class="workspace">
+<section class="viewer" aria-label="Photo comparison">
+<div class="stage" id="stage"><div id="frame">
+<canvas id="original" aria-label="Original image"></canvas><canvas id="edited" aria-label="Converted image"></canvas>
+<span class="tag left">Original</span><span class="tag right">Film</span><div id="divider"><b>‹ ›</b></div>
+<input id="split" type="range" min="0" max="100" value="50" aria-label="Before and after comparison" disabled>
+</div></div>
+<div class="caption"><span id="filename">Saas-Almagell, Switzerland</span><span id="dimensions"></span></div>
+</section>
+<aside aria-label="Conversion settings">
+<h2>Film recipe</h2>
+<div class="options">
+<label><input type="radio" name="recipe" value="classic" checked><span><strong>Classic Negative</strong><small>Scene-aware contrast and color</small></span></label>
+<label><input type="radio" name="recipe" value="gold"><span><strong>Gold-inspired</strong><small>Experimental color-negative tones</small></span></label>
+</div>
+<div class="actions"><button id="open" type="button">Choose photo</button><input type="file" id="file" hidden accept=".heic,.heif,image/heic,image/heif,image/jpeg,image/png,image/webp"><p class="hint">JPEG, PNG, WebP or HEIC. Drop a photo onto the preview or choose a file.</p>
+<button type="button" id="save" disabled>Download JPEG <span aria-hidden="true">↓</span></button></div>
+<p id="status" role="status">Loading the sample…</p><p class="privacy">Your photo is processed on this device.</p>
+</aside></div>
+<footer><span>Sample photograph by <a href="https://commons.wikimedia.org/wiki/File:Saas-Almagell_-_mountains_2.jpg">Tiia Monto</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Resized and color graded.</span><a href="https://github.com/ddrisco11/lomoplusdigital-pairs/blob/main/DATASET.md">Sources &amp; credits ↗</a></footer>
+</main><script type="module" src="./app.js"></script>
+</body></html>
