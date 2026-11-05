@@ -4,7 +4,7 @@ The converter exports full-resolution SDR sRGB photographs. The default preset l
 
 ![Group portrait in a park, original and converted](park-cover.jpg)
 
-Demo photo supplied by David Driscoll. The right panel shows Classic Negative with one pass on the foreground and two on the background.
+I used this park portrait to compare the original (left) with my Classic Negative preset (right).
 
 ## Convert an image
 
@@ -24,7 +24,7 @@ The pipeline honors EXIF orientation and embedded ICC profiles, treats untagged 
 
 ## Training and test results
 
-Both Classic Negative models use paired sRGB input and target samples. The fixed model fits a smooth color transform to 1,024 corresponding pixels per training image. The adaptive model also uses image brightness, contrast and red–blue balance to adjust that transform. Both use ridge regression and are exported as 33³ lookup tables for full-size rendering. Training ran on an M2 MacBook Air using NumPy. The digital-to-film evaluation collection was reserved for visual review.
+Both Classic Negative models use paired sRGB input and target samples. The fixed model fits a smooth color transform to 1,024 corresponding pixels per training image. The adaptive model also uses image brightness, contrast and red–blue balance to adjust that transform. Both use ridge regression and are exported as 33³ lookup tables for full-size rendering. I trained both models on my M2 MacBook Air using NumPy and set aside the digital-to-film collection for visual review.
 
 | Model | Mean per-image PSNR on 48 FilmSet test images |
 | --- | ---: |
@@ -34,7 +34,7 @@ Both Classic Negative models use paired sRGB input and target samples. The fixed
 
 These single-pass scores measure agreement with the paired software recipe in 8-bit sRGB. The adaptive model gained 0.25 dB over the fixed model on this subset. Real-film resemblance and user preference require separate review.
 
-**FilmSet.** The fit used 160 pairs from the official training split. The 48 test pairs were chosen from the official test split by filename hash. Training excluded those filenames. The manifest records every archive member. Zinuo Li, Xuhang Chen, Shuqiang Wang and Chi-Man Pun created FilmSet. [Dataset version 1](https://www.kaggle.com/datasets/xuhangc/filmset/versions/1) · [Paper](https://www.ijcai.org/proceedings/2023/129) · [Pilot manifest](filmset-classneg.csv) · [Scores](filmset-classneg.json)
+**FilmSet.** I trained on 160 pairs from the official training split. I selected 48 pairs from the official test split by filename hash and excluded those filenames from training. The manifest records every archive member. Zinuo Li, Xuhang Chen, Shuqiang Wang and Chi-Man Pun created FilmSet. [Dataset version 1](https://www.kaggle.com/datasets/xuhangc/filmset/versions/1) · [Paper](https://www.ijcai.org/proceedings/2023/129) · [Pilot manifest](filmset-classneg.csv) · [Scores](filmset-classneg.json)
 
 **DigitalFilm.** The Gold experiment uses 256 unpaired digital photos and 256 film references sampled independently from the Gold 200 archive. It estimates per-channel tonal adjustments from brightness-stratified groups, then applies 40% of the estimated shift after the adaptive LUT. The color of the scenes and the scan processing can influence this estimate. The Gold preset has no paired stock-fidelity score. Source attribution is limited to the dataset and archive paths where the publisher gives no individual image credit. The manifest records the members and archive checksum. Source photographs are excluded from this repository. [DigitalFilm dataset card and credits](https://huggingface.co/datasets/Richards-Sheehy-sudo/DigitalFilm_dataset) · [Gold calibration and member manifest](digitalfilm-gold.json)
 

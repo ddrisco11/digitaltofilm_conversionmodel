@@ -25,14 +25,14 @@ The 13 Sillystill entries include one original camera-file pair (Sony ARW and fi
 
 Pierre Mackenzie, Mika Senghaas and Raphaël Achddou report collecting 41 raw pairs and retaining 38 after preprocessing. Their project README lists the full dataset download as pending. This collection includes the examples recoverable from the authors’ repository. [Paper](https://arxiv.org/html/2411.15967v1) · [Authors’ repository and download status](https://github.com/mikasenghaas/sillystill)
 
-The figure files are credited to the authors above under the paper’s [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/). The files were copied without edits from the authors’ report sources and verified against their Git blob hashes. The original café files are local-only because their separate redistribution terms were unclear. Each Sillystill row links to the exact revision of both source files. [Original café files](https://github.com/mikasenghaas/sillystill/tree/b1ebdb971207b403b7126b759c1d30d30954a722/imgs) · [Report figures](https://github.com/mikasenghaas/sillystill/tree/b1ebdb971207b403b7126b759c1d30d30954a722/report/figures)
+The figure files are credited to the authors above under the paper’s [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/). I copied the figure files from the authors’ report sources and verified each one against its Git blob hash. The original café files are local-only because their separate redistribution terms were unclear. Each Sillystill row links to the exact revision of both source files. [Original café files](https://github.com/mikasenghaas/sillystill/tree/b1ebdb971207b403b7126b759c1d30d30954a722/imgs) · [Report figures](https://github.com/mikasenghaas/sillystill/tree/b1ebdb971207b403b7126b759c1d30d30954a722/report/figures)
 
 ## Flickr sources
 
-The 17 Flickr pairs were selected by matching subjects and creators and checking the available medium evidence. The `digital_label_basis` column identifies inferred digital labels. All 34 photos are marked All Rights Reserved and their files are stored locally. [Original group pool](https://www.flickr.com/groups/lomoplusdigital/pool/)
+I selected the 17 Flickr pairs by matching subjects and creators and checking the evidence for how each photo was captured. The `digital_label_basis` column identifies inferred digital labels. All 34 photos are marked All Rights Reserved and their files are stored locally. [Original group pool](https://www.flickr.com/groups/lomoplusdigital/pool/)
 
 [sources.csv](sources.csv) preserves the original titles, creator profiles, Flickr pages and license information for the 34 retained photos. [Excluded Flickr sources](excluded-flickr-sources.csv) preserves the attribution history for the 102 removed photos. Paths in that historical file refer to their former locations.
 
 ## GitHub copy
 
-GitHub includes the pair index, source records and 24 Sillystill figure images. Paths beginning with `local-only/` are available on the collecting computer. The index provides original source links for those images.
+GitHub includes the pair index, source records and 24 Sillystill figure images. Paths beginning with `local-only/` refer to files I keep on my computer. The index provides original source links for those images.
