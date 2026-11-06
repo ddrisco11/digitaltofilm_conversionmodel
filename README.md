@@ -1,6 +1,6 @@
 # Digital to Film
 
-A browser-based iPhone photo converter. Choose a film-inspired recipe, compare it with the original, and export a full-resolution JPEG. Foreground subjects receive one pass of the chosen recipe and the background receives two. Subject detection and conversion run on your device.
+I explore digital-to-film conversion through learned recipes and a simulation of photographic materials. The browser demos process photos on-device. My latest experiment develops a three-layer negative, exposes a separate paper emulsion, and computes the reflected print.
 
 **[Choose a live experiment →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)** · [How I trained the converter](converter/README.md) · [Dataset and photo credits](DATASET.md)
 
@@ -8,13 +8,37 @@ A browser-based iPhone photo converter. Choose a film-inspired recipe, compare i
 
 The right panel shows Classic Negative with one pass on the foreground and two on the background.
 
-## Color emulsion lab
+## Chemistry studio
 
-I built a virtual color stock to explore how grain activation affects a print. I treat a photo as light emitted by a display, simulate three grain populations in each color layer, and pass the developed dyes to a separate paper model. I designed the layer responses, dye curves and paper response. [Open the color emulsion lab →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/physics.html)
+**[Open the chemistry studio →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/chemistry.html)**
 
-![Display exposure, grain activation, negative transmission and virtual print](docs/emulsion/path.svg)
+I returned to the stronger chemistry print and added a subtle variation in local emulsion sensitivity. The studio accepts a photo, develops a negative, exposes a separate paper emulsion, and renders the reflected print. I can select a measurement point and watch developer concentration, oxidized developer, coupler consumption, dye formation, and the final reflected spectrum as the calculations run.
 
-I can inspect and export each stage. In the park portrait the blue shirt stays blue, while the leaves shift toward olive. A neutral ramp stays balanced in the mean response, so I use foliage and skin as separate color checks. [Model, parameter choices and reproduction instructions](experiments/emulsion/README.md)
+The default render is a 1600-pixel preview. Original resolution is available for the full output. The worker performs spectral calculations and reaction–diffusion steps on-device, and I can export both the PNG and its measured numerical trace. Browser and Python use independent random realizations.
+
+[Model and reproduction](experiments/silver/README.md) · [Detailed process whiteboard](docs/emulsion/path.svg)
+
+![Spectral film exposure, stochastic grain activation, two development baths and paper reflection](docs/emulsion/path.svg)
+
+### Why the first prints were dark
+
+My initial enlarger exposure formed too much dye in paper highlights. I also assigned too much scattering to the dye-bearing coating, raising the black floor. I tested the paper with a uniform exposure wedge and printed the same synthetic negatives with each correction separately. Relative enlarger exposure is now 0.35 and coating scatter is 0.01.
+
+| Input gray | First print | Corrected print |
+|---|---:|---:|
+| Black, 0 | 67 | 25 |
+| Middle gray, 128 | 84 | 123 |
+| White, 255 | 134 | 227 |
+
+Values describe the reference neutral-patch experiment before the subtle grain variation. I use the same material settings for every photograph. Parameters describe an invented material selected with synthetic targets.
+
+![Park portrait before and after correcting the paper model](experiments/silver/paper-correction.jpg)
+
+### Runtime and precision
+
+I added an optional compiled development kernel that evaluates the same finite-difference and reaction equations. It reduces interpreter and allocation overhead. The benchmark records runtime, numerical differences in dye concentration, and the effect on rendered pixels. Image dimensions, iteration counts and spectral sampling remain full quality. [Reproducible benchmark](experiments/silver/native-benchmark.json)
+
+The model uses relative reaction units, a fixed display spectrum, independent lateral chemistry grids, ideal bleach/fix endpoints, and a finite diffuse coating over a white backing. Its material properties are explicit experimental assumptions. The older [Color Emulsion Lab](https://ddrisco11.github.io/digitaltofilm_conversionmodel/physics.html) remains available as a separate experiment.
 
 ## Experimental synthetic negative lab
 

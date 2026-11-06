@@ -1,0 +1,892 @@
+{
+  "paper_exposure": 0.35,
+  "coating_scatter": 0.01,
+  "neutral_patches": {
+    "0": {
+      "previous": [
+        67,
+        67,
+        67
+      ],
+      "exposure_only": [
+        74,
+        74,
+        74
+      ],
+      "scatter_only": [
+        15,
+        15,
+        15
+      ],
+      "corrected": [
+        25,
+        25,
+        25
+      ]
+    },
+    "32": {
+      "previous": [
+        67,
+        67,
+        67
+      ],
+      "exposure_only": [
+        74,
+        74,
+        74
+      ],
+      "scatter_only": [
+        16,
+        16,
+        16
+      ],
+      "corrected": [
+        26,
+        26,
+        26
+      ]
+    },
+    "64": {
+      "previous": [
+        69,
+        69,
+        69
+      ],
+      "exposure_only": [
+        84,
+        84,
+        84
+      ],
+      "scatter_only": [
+        18,
+        18,
+        18
+      ],
+      "corrected": [
+        42,
+        42,
+        42
+      ]
+    },
+    "96": {
+      "previous": [
+        75,
+        75,
+        76
+      ],
+      "exposure_only": [
+        108,
+        108,
+        108
+      ],
+      "scatter_only": [
+        28,
+        28,
+        28
+      ],
+      "corrected": [
+        79,
+        79,
+        80
+      ]
+    },
+    "128": {
+      "previous": [
+        84,
+        84,
+        84
+      ],
+      "exposure_only": [
+        140,
+        140,
+        140
+      ],
+      "scatter_only": [
+        42,
+        42,
+        42
+      ],
+      "corrected": [
+        123,
+        123,
+        124
+      ]
+    },
+    "160": {
+      "previous": [
+        95,
+        95,
+        95
+      ],
+      "exposure_only": [
+        176,
+        175,
+        175
+      ],
+      "scatter_only": [
+        60,
+        60,
+        60
+      ],
+      "corrected": [
+        168,
+        168,
+        168
+      ]
+    },
+    "192": {
+      "previous": [
+        107,
+        107,
+        107
+      ],
+      "exposure_only": [
+        201,
+        201,
+        201
+      ],
+      "scatter_only": [
+        78,
+        78,
+        78
+      ],
+      "corrected": [
+        198,
+        198,
+        197
+      ]
+    },
+    "224": {
+      "previous": [
+        120,
+        120,
+        120
+      ],
+      "exposure_only": [
+        218,
+        218,
+        218
+      ],
+      "scatter_only": [
+        96,
+        96,
+        97
+      ],
+      "corrected": [
+        216,
+        216,
+        216
+      ]
+    },
+    "255": {
+      "previous": [
+        134,
+        134,
+        134
+      ],
+      "exposure_only": [
+        228,
+        228,
+        228
+      ],
+      "scatter_only": [
+        115,
+        116,
+        116
+      ],
+      "corrected": [
+        227,
+        227,
+        227
+      ]
+    }
+  },
+  "direct_paper_wedge": [
+    {
+      "relative_exposure": 0.0001,
+      "dye": 4.029871987832446e-11,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.00012470281287818588,
+      "dye": 9.731118220342627e-11,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.00015550791539731856,
+      "dye": 2.3489718975833017e-10,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.00019392274474868578,
+      "dye": 5.667582665038215e-10,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.00024182711751219565,
+      "dye": 1.366704912315754e-09,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.00030156521783994433,
+      "dye": 3.2934306470074215e-09,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.00037606030930863936,
+      "dye": 7.929474821633981e-09,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.0004689577838262801,
+      "dye": 1.9070818643819444e-08,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.0005848035476425735,
+      "dye": 4.580440542334361e-08,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.000729266473721711,
+      "dye": 1.0982815572636154e-07,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.0009094158061085307,
+      "dye": 2.627899728561619e-07,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.0011340670909761668,
+      "dye": 6.271460747359597e-07,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.0014142135623730952,
+      "dye": 1.4918152174316724e-06,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.0017635640923840492,
+      "dye": 3.534286082639855e-06,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.002199214030112558,
+      "dye": 8.33103423922505e-06,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.0027424817567620733,
+      "dye": 1.9515221001168485e-05,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.0034199518933533965,
+      "dye": 4.5359130558731615e-05,
+      "previous_scatter": [
+        247,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.004264776210092461,
+      "dye": 0.0001044132297276193,
+      "previous_scatter": [
+        246,
+        247,
+        247
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.005318295896944989,
+      "dye": 0.00023748566472541675,
+      "previous_scatter": [
+        246,
+        246,
+        246
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.006632064580675554,
+      "dye": 0.0005321929755220073,
+      "previous_scatter": [
+        246,
+        246,
+        246
+      ],
+      "corrected_scatter": [
+        246,
+        246,
+        246
+      ]
+    },
+    {
+      "relative_exposure": 0.00827037108400028,
+      "dye": 0.0011709242838086138,
+      "previous_scatter": [
+        246,
+        246,
+        246
+      ],
+      "corrected_scatter": [
+        245,
+        245,
+        245
+      ]
+    },
+    {
+      "relative_exposure": 0.01031338537721246,
+      "dye": 0.0025186026521095044,
+      "previous_scatter": [
+        245,
+        245,
+        245
+      ],
+      "corrected_scatter": [
+        244,
+        244,
+        244
+      ]
+    },
+    {
+      "relative_exposure": 0.012861081668351452,
+      "dye": 0.005268811821785112,
+      "previous_scatter": [
+        242,
+        243,
+        243
+      ],
+      "corrected_scatter": [
+        242,
+        242,
+        242
+      ]
+    },
+    {
+      "relative_exposure": 0.016038130606994976,
+      "dye": 0.010653526587731093,
+      "previous_scatter": [
+        238,
+        238,
+        238
+      ],
+      "corrected_scatter": [
+        238,
+        238,
+        238
+      ]
+    },
+    {
+      "relative_exposure": 0.020000000000000004,
+      "dye": 0.020669456160661376,
+      "previous_scatter": [
+        231,
+        231,
+        231
+      ],
+      "corrected_scatter": [
+        230,
+        230,
+        230
+      ]
+    },
+    {
+      "relative_exposure": 0.024940562575637204,
+      "dye": 0.03815843722520851,
+      "previous_scatter": [
+        219,
+        219,
+        219
+      ],
+      "corrected_scatter": [
+        218,
+        218,
+        218
+      ]
+    },
+    {
+      "relative_exposure": 0.03110158307946372,
+      "dye": 0.06642503190833898,
+      "previous_scatter": [
+        202,
+        202,
+        202
+      ],
+      "corrected_scatter": [
+        198,
+        198,
+        198
+      ]
+    },
+    {
+      "relative_exposure": 0.03878454894973716,
+      "dye": 0.10805594170122398,
+      "previous_scatter": [
+        180,
+        180,
+        180
+      ],
+      "corrected_scatter": [
+        173,
+        173,
+        173
+      ]
+    },
+    {
+      "relative_exposure": 0.048365423502439185,
+      "dye": 0.16307755678932942,
+      "previous_scatter": [
+        156,
+        156,
+        156
+      ],
+      "corrected_scatter": [
+        144,
+        144,
+        144
+      ]
+    },
+    {
+      "relative_exposure": 0.06031304356798887,
+      "dye": 0.22768479879571138,
+      "previous_scatter": [
+        134,
+        134,
+        134
+      ],
+      "corrected_scatter": [
+        116,
+        116,
+        116
+      ]
+    },
+    {
+      "relative_exposure": 0.07521206186172788,
+      "dye": 0.29547397923702357,
+      "previous_scatter": [
+        117,
+        117,
+        117
+      ],
+      "corrected_scatter": [
+        92,
+        92,
+        92
+      ]
+    },
+    {
+      "relative_exposure": 0.09379155676525602,
+      "dye": 0.3613413334611039,
+      "previous_scatter": [
+        104,
+        104,
+        104
+      ],
+      "corrected_scatter": [
+        73,
+        73,
+        73
+      ]
+    },
+    {
+      "relative_exposure": 0.1169607095285147,
+      "dye": 0.424374870442744,
+      "previous_scatter": [
+        94,
+        94,
+        94
+      ],
+      "corrected_scatter": [
+        58,
+        58,
+        58
+      ]
+    },
+    {
+      "relative_exposure": 0.14585329474434222,
+      "dye": 0.4858694625921421,
+      "previous_scatter": [
+        87,
+        87,
+        87
+      ],
+      "corrected_scatter": [
+        46,
+        46,
+        46
+      ]
+    },
+    {
+      "relative_exposure": 0.18188316122170617,
+      "dye": 0.5451245429361999,
+      "previous_scatter": [
+        81,
+        81,
+        81
+      ],
+      "corrected_scatter": [
+        37,
+        37,
+        37
+      ]
+    },
+    {
+      "relative_exposure": 0.22681341819523337,
+      "dye": 0.5994112907834566,
+      "previous_scatter": [
+        77,
+        77,
+        77
+      ],
+      "corrected_scatter": [
+        30,
+        30,
+        30
+      ]
+    },
+    {
+      "relative_exposure": 0.28284271247461906,
+      "dye": 0.6472721877709586,
+      "previous_scatter": [
+        74,
+        74,
+        74
+      ],
+      "corrected_scatter": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "relative_exposure": 0.35271281847680985,
+      "dye": 0.6887069083495405,
+      "previous_scatter": [
+        71,
+        71,
+        71
+      ],
+      "corrected_scatter": [
+        21,
+        21,
+        21
+      ]
+    },
+    {
+      "relative_exposure": 0.43984280602251163,
+      "dye": 0.7224075385055665,
+      "previous_scatter": [
+        69,
+        69,
+        69
+      ],
+      "corrected_scatter": [
+        18,
+        18,
+        18
+      ]
+    },
+    {
+      "relative_exposure": 0.5484963513524147,
+      "dye": 0.7458815558296129,
+      "previous_scatter": [
+        68,
+        68,
+        68
+      ],
+      "corrected_scatter": [
+        17,
+        17,
+        17
+      ]
+    },
+    {
+      "relative_exposure": 0.6839903786706795,
+      "dye": 0.7587074340165499,
+      "previous_scatter": [
+        68,
+        68,
+        68
+      ],
+      "corrected_scatter": [
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "relative_exposure": 0.8529552420184924,
+      "dye": 0.7637838886667351,
+      "previous_scatter": [
+        67,
+        67,
+        67
+      ],
+      "corrected_scatter": [
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "relative_exposure": 1.063659179388998,
+      "dye": 0.7651155004069584,
+      "previous_scatter": [
+        67,
+        67,
+        67
+      ],
+      "corrected_scatter": [
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "relative_exposure": 1.326412916135111,
+      "dye": 0.7653238878504803,
+      "previous_scatter": [
+        67,
+        67,
+        67
+      ],
+      "corrected_scatter": [
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "relative_exposure": 1.6540742168000575,
+      "dye": 0.7653410750669111,
+      "previous_scatter": [
+        67,
+        67,
+        67
+      ],
+      "corrected_scatter": [
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "relative_exposure": 2.062677075442492,
+      "dye": 0.7653417182143771,
+      "previous_scatter": [
+        67,
+        67,
+        67
+      ],
+      "corrected_scatter": [
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "relative_exposure": 2.5722163336702906,
+      "dye": 0.7653417272772101,
+      "previous_scatter": [
+        67,
+        67,
+        67
+      ],
+      "corrected_scatter": [
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "relative_exposure": 3.207626121398999,
+      "dye": 0.7653417273152346,
+      "previous_scatter": [
+        67,
+        67,
+        67
+      ],
+      "corrected_scatter": [
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "relative_exposure": 4.0,
+      "dye": 0.7653417273152695,
+      "previous_scatter": [
+        67,
+        67,
+        67
+      ],
+      "corrected_scatter": [
+        15,
+        15,
+        15
+      ]
+    }
+  ]
+}

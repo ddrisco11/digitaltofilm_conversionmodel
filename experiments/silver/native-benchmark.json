@@ -1,0 +1,11 @@
+{
+  "seconds": {
+    "reference": 1.0151957079942804,
+    "native": 0.505973624996841
+  },
+  "speedup": 2.0064202121219634,
+  "max_dye_error": 4.172325134277344e-07,
+  "max_srgb8_error": 0,
+  "changed_channel_fraction": 0.0,
+  "note": "Same equations and float32 state. Compilation excluded. Floating-point results can differ by rounding."
+}
