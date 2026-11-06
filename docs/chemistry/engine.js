@@ -1,3 +1,7 @@
+export const PROFILES = Object.freeze({
+  'scan-b': Object.freeze({exposure:.36, steps:42, bath:.14, scatter:.045, backing:[.88,.96]}),
+  legacy: Object.freeze({exposure:.35, steps:55, bath:.14, scatter:.01, backing:[.94,.94]})
+});
 // Actual spectral exposure, latent grain sampling and two reaction–diffusion baths.
 export function randomGenerator(seed) {
   return () => {
@@ -62,7 +66,9 @@ function chemistry(active,w,h,steps,bath,phase,channel,probe,update) {
   return dye;
 }
 
-export function simulate(pixels,w,h,model,seed,probe,update=()=>{}) {
+export function simulate(pixels,w,h,model,seed,probe,update=()=>{},profile="scan-b") {
+  const settings=PROFILES[profile];
+  if(!settings)throw new Error("Unknown chemistry profile: "+profile);
   const n=w*h, rng=randomGenerator(seed);
   const film=Array.from({length:3},()=>new Float32Array(n));
   const paper=Array.from({length:3},()=>new Float32Array(n));
@@ -97,7 +103,7 @@ export function simulate(pixels,w,h,model,seed,probe,update=()=>{}) {
       const d=model.filmDyes[k];
       const t=10**(-.1-2*(film[0][i]*d[0]+film[1][i]*d[1]+film[2][i]*d[2]));
       for(let c=0;c<3;c++){
-        light[c]+=t*model.response[k][c]*.35;
+        light[c]+=t*model.response[k][c]*settings.exposure;
         rgb[c]+=t*model.viewer[k][c];
       }
     }
@@ -112,16 +118,17 @@ export function simulate(pixels,w,h,model,seed,probe,update=()=>{}) {
     if(i===probe)update({phase:'negative',filmDyes:film.map(a=>a[i]),paperExposure:light});
   }
   update({phase:'negative-image',pixels:negative});
-  for(let c=0;c<3;c++)paper[c]=chemistry(paper[c],w,h,55,.14,'paper',c,probe,update);
+  for(let c=0;c<3;c++)paper[c]=chemistry(paper[c],w,h,settings.steps,settings.bath,'paper',c,probe,update);
   const output=new Uint8ClampedArray(n*4),spectrum=[];
   for(let i=0;i<n;i++){
     const rgb=[0,0,0];
     for(let k=0;k<model.wavelengths.length;k++){
-      const d=model.paperDyes[k],scatter=.01;
+      const d=model.paperDyes[k],scatter=settings.scatter;
       const absorption=.008+3.7*(paper[0][i]*d[0]+paper[1][i]*d[1]+paper[2][i]*d[2]);
       const g=Math.sqrt(absorption*(absorption+2*scatter)),u=Math.sinh(g)/g;
       const den=Math.cosh(g)+(absorption+scatter)*u,r=scatter*u/den,t=1/den;
-      const reflectance=r+t*t*.94/(1-r*.94);
+      const backing=settings.backing[0]+(settings.backing[1]-settings.backing[0])*(model.wavelengths[k]-400)/300;
+      const reflectance=r+t*t*backing/(1-r*backing);
       for(let c=0;c<3;c++)rgb[c]+=reflectance*model.viewer[k][c];
       if(i===probe)spectrum.push(reflectance);
     }

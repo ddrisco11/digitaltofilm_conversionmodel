@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Chemistry studio · Digital to Film</title>
+<title>Scan-B · Physics print · Digital to Film</title>
 <link rel="stylesheet" href="./style.css">
 <style>
 .studio{max-width:1600px;padding-bottom:50px}.studio h1{font-size:clamp(38px,5vw,70px)}.tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:24px 0}.tools button{width:auto;margin:0;flex:0 0 auto}.tools button,.tools select{padding:11px 16px;border:1px solid #a8ab9d;background:#fffdf8;color:#26372a;border-radius:4px;font:inherit}.tools button:first-child{background:#314938;color:white}.tools button:disabled{opacity:.45}.lab{display:grid;grid-template-columns:minmax(0,2fr) minmax(300px,1fr);gap:26px}.photos{display:grid;grid-template-columns:1fr 1fr;gap:12px}.photos figure{margin:0;min-width:0}.photos canvas{width:100%;height:480px;object-fit:contain;background:#222922;display:block}.photos figcaption{padding:9px 0;color:#525449;font-size:14px}.science{border:1px solid #c5cabf;border-radius:6px;padding:20px;background:#fffdf7}.science h2{font-size:28px}.science p{margin:10px 0}.equation{font-family:monospace;font-size:13px;white-space:pre-wrap;padding:12px;background:#edf0e8;border-left:3px solid #57775e}.readings{display:grid;grid-template-columns:1fr 1fr;gap:8px}.readings div{padding:10px;background:#f0f1ea}.readings small{display:block;color:#5d685b}.readings strong{font-family:monospace;font-size:20px}#chart,#spectrum{width:100%;height:145px;background:#f5f6ef}#negative{width:100%;height:140px;object-fit:contain;background:#222922}.label{font-size:13px;color:#52614e}.steps{display:flex;gap:6px;margin:14px 0;flex-wrap:wrap}.steps span{padding:5px 8px;background:#e8eade;border-radius:3px;font-size:13px}.steps .active{background:#314938;color:white}progress{width:100%;accent-color:#314938}.hint{font-size:14px;color:#5d685b}#status{min-height:24px}a{color:inherit}#trace{font-size:14px}.legend{display:flex;gap:18px;font-size:12px}.legend span:first-child{color:#4873a3}.legend span:last-child{color:#9c5a23}@media(max-width:850px){.lab{grid-template-columns:1fr}.photos canvas{height:350px}.science{max-width:none}}
-</style></head><body>
+</style></head><body data-profile="scan-b">
 <header><div class="mast"><a href="./">← All experiments</a><a href="https://github.com/ddrisco11/digitaltofilm_conversionmodel">View source ↗</a></div></header>
 <main class="studio">
-<div class="intro"><div><h1>Chemistry studio</h1><p>Develop a negative, expose the paper, and watch the print emerge.</p></div></div>
+<div class="intro"><div><h1>Scan-B · Physics print</h1><p>The current model: stochastic film grains, developed dyes, and a softer photographic paper print.</p></div></div>
 <div class="tools">
 <button id="choose">Choose photo</button><input id="file" type="file" accept=".heic,.heif,image/*" hidden>
 <label for="resolution">Render size</label><select id="resolution"><option value="1024">1024 px preview</option><option value="1600" selected>1600 px</option><option value="0">Original resolution</option></select>
@@ -21,7 +21,7 @@
 <figure><canvas id="input" aria-label="Original photograph. Click to select a measurement point."></canvas><figcaption id="input-caption">Original</figcaption></figure>
 <figure><canvas id="output" aria-label="Developed print"></canvas><figcaption id="output-caption">Print</figcaption></figure>
 </div>
-<details><summary>About this experiment</summary><p>This version uses the preferred chemistry print with a subtle variation in local emulsion sensitivity. Spectral transmission, stochastic grain activation, developer diffusion, finite couplers, and diffuse paper reflection run in a browser worker. The graphs show computed values at your chosen pixel.</p><p>The browser and Python implementations use independent random realizations. Material constants are experimental. The preview renders at the selected resolution. <a href="./emulsion/path.svg">Open the process whiteboard</a>.</p></details>
+<details><summary>About this experiment</summary><p>Scan-B keeps the existing film simulation and subtle variation in local emulsion sensitivity. Its paper uses exposure 0.36, 42 development steps, scattering 0.045, and backing reflectance rising from 0.88 at 400 nm to 0.96 at 700 nm. Spectral transmission, stochastic grain activation, developer diffusion, finite couplers, and diffuse paper reflection run in a browser worker. The graphs show computed values at your chosen pixel.</p><p>The browser and Python implementations use independent random realizations and slightly different sensitivity-variation fields, so individual grains are not pixel-identical. Material constants are experimental. The preview renders at the selected resolution. <a href="./chemistry-history.html">Earlier chemistry studio</a> · <a href="./emulsion/path.svg">Open the process whiteboard</a>.</p></details>
 </section><aside class="science">
 <h2 id="phase">At the measurement point</h2><p id="probe-label" class="label">Centre of image</p>
 <div id="equation" class="equation">Hⱼ ∝ Σ L(λ) ηⱼ(λ) λ Δλ</div>
@@ -32,4 +32,4 @@
 <p class="label">Final reflected spectrum · 400–700 nm</p><canvas id="spectrum" width="600" height="180" aria-label="Reflected light by wavelength"></canvas>
 <button id="trace" disabled>Save measured trace</button>
 </aside></div>
-</main><script type="module" src="./chemistry/ui.js"></script></body></html>
+</main><script type="module" src="./chemistry/ui.js?v=scan-b-1"></script></body></html>

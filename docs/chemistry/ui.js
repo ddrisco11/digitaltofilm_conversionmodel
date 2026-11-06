@@ -1,10 +1,12 @@
+import {PROFILES} from './engine.js?v=scan-b-1';
+const profile=document.body.dataset.profile||'scan-b', settings=PROFILES[profile];
 const $=id=>document.getElementById(id);
 let source,worker,name='park-group',probe=[.5,.5],history=[],runHistory=[],lastSeries='',busy=false;
 const canvases=['input','output','negative'];
 const formulas={
  exposure:'Hⱼ ∝ Σ L(λ) ηⱼ(λ) λ Δλ\nP(active) = P[Poisson(H × sensitivity) ≥ 4]',
  film:'∂C/∂t = D∇²C + b(1−C) − reaction\nΔAg = (A−Ag)[1−exp(−kCΔt)]\nOxidized developer + coupler → dye',
- 'paper-exposure':'T(λ) = 10^[−0.10 − 2Σdⱼaⱼ(λ)]\nHpaper = 0.35 Σ T(λ) lamp(λ) captureⱼ(λ)',
+ 'paper-exposure':`T(λ) = 10^[−0.10 − 2Σdⱼaⱼ(λ)]\nHpaper = ${settings.exposure} Σ T(λ) lamp(λ) captureⱼ(λ)`,
  paper:'A new grain population activates on paper.\nDeveloper diffuses and is consumed.\nOxidized developer + coupler → paper dye',
  reflection:'R = r + t²Rg/(1−rRg)\nXYZ ∝ Σ D50(λ) R(λ) CMF(λ) Δλ'
 };
@@ -70,7 +72,7 @@ $('run').onclick=()=>{
  const w=$('input').width,h=$('input').height,started=performance.now();
  const seed=crypto.getRandomValues(new Uint32Array(1))[0];
  const pixels=$('input').getContext('2d').getImageData(0,0,w,h).data;
- worker?.terminate();worker=new Worker('./chemistry/worker.js',{type:'module'});
+ worker?.terminate();worker=new Worker('./chemistry/worker.js?v=scan-b-1',{type:'module'});
  worker.onerror=()=>{$('status').textContent='The worker stopped. Try a smaller render size.';controls(false);};
  worker.onmessage=({data})=>{
   if(data.type==='error'){$('status').textContent=data.message;controls(false);return;}
@@ -81,7 +83,7 @@ $('run').onclick=()=>{
   }
   if(data.phase==='negative-image'){$('negative').getContext('2d').putImageData(new ImageData(data.pixels,w,h),0,0);return;}
   if(data.phase==='spectrum'){plot('spectrum',[{values:data.spectrum,color:'#517a54'}]);runHistory.push(data);return;}
-  runHistory.push({...data,width:w,height:h,seed,probe});
+  runHistory.push({...data,profile,settings,width:w,height:h,seed,probe});
   if(formulas[data.phase]){
    $('equation').textContent=formulas[data.phase];
    document.querySelectorAll('[data-phase]').forEach(el=>el.classList.toggle('active',el.dataset.phase===data.phase));
@@ -102,10 +104,10 @@ $('run').onclick=()=>{
    $('status').textContent={exposure:'Exposing film','paper-exposure':'Exposing paper',reflection:'Computing spectral reflection'}[data.phase]+' · '+Math.round(data.fraction*100)+'%';
   }
  };
- worker.postMessage({pixels,width:w,height:h,seed,probe:Math.min(w*h-1,Math.floor(probe[1]*h)*w+Math.floor(probe[0]*w))},[pixels.buffer]);
+ worker.postMessage({profile,pixels,width:w,height:h,seed,probe:Math.min(w*h-1,Math.floor(probe[1]*h)*w+Math.floor(probe[0]*w))},[pixels.buffer]);
 };
 $('cancel').onclick=()=>{worker?.terminate();controls(false);$('status').textContent='Cancelled. Ready for another run.';};
 function download(blob,filename){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
-$('save').onclick=()=>$('output').toBlob(blob=>download(blob,name+'-chemistry.png'),'image/png');
+$('save').onclick=()=>$('output').toBlob(blob=>download(blob,name+'-'+profile+'.png'),'image/png');
 $('trace').onclick=()=>download(new Blob([JSON.stringify(runHistory,null,2)],{type:'application/json'}),name+'-physics-trace.json');
 try{const response=await fetch('./park-group.jpg');if(!response.ok)throw new Error('Could not load sample. Choose a photo.');await open(await response.blob(),'park-group.jpg');}catch(e){$('status').textContent=e.message;}

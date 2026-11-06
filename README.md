@@ -1,20 +1,22 @@
 # Digital to Film
 
-I explore digital-to-film conversion through learned recipes and a simulation of photographic materials. The browser demos process photos on-device. My latest experiment develops a three-layer negative, exposes a separate paper emulsion, and computes the reflected print.
+I explore digital-to-film conversion through learned recipes and a simulation of photographic materials. The browser demos process photos on-device. My current headline model, **Scan-B**, develops a three-layer negative, exposes a separate paper emulsion, and computes the reflected print.
 
-**[Choose a live experiment →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)** · [How I trained the converter](converter/README.md) · [Dataset and photo credits](DATASET.md)
+**[Open Scan-B →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/chemistry.html)** · [How I trained the converter](converter/README.md) · [Dataset and photo credits](DATASET.md)
 
-[![Group portrait in a park, original and Classic Negative](converter/park-cover.jpg)](https://ddrisco11.github.io/digitaltofilm_conversionmodel/)
+[![Park portrait developed with Scan-B](docs/chemistry/scan-b-card.jpg)](https://ddrisco11.github.io/digitaltofilm_conversionmodel/chemistry.html)
 
-The right panel shows Classic Negative with one pass on the foreground and two on the background.
+## Scan-B — current model
 
-## Chemistry studio
+I kept the stochastic film writer and tuned the photographic paper toward a softer old-print appearance. Paper exposure is **0.36**, development is **42 steps** at replenishment **0.14**, scattering is **0.045**, and backing reflectance rises linearly from **0.88 at 400 nm to 0.96 at 700 nm**. These are experimental material assumptions, not a measured film-stock profile. The stronger amber response and compressed darkest tones remain limitations.
 
-**[Open the chemistry studio →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/chemistry.html)**
+The demo accepts a photo and shows actual developer concentration, oxidized developer, coupler consumption, dye formation and reflected spectra at a selected pixel. It defaults to a 1600-pixel preview, offers original-resolution PNG export, and runs on-device. The browser uses the same paper settings as the Python experiment, with independent stochastic sampling and a different small sensitivity-variation field; outputs are not pixel-identical.
 
-I returned to the stronger chemistry print and added a subtle variation in local emulsion sensitivity. The studio accepts a photo, develops a negative, exposes a separate paper emulsion, and renders the reflected print. I can select a measurement point and watch developer concentration, oxidized developer, coupler consumption, dye formation, and the final reflected spectrum as the calculations run.
+**[Open Scan-B →](https://ddrisco11.github.io/digitaltofilm_conversionmodel/chemistry.html)** · [Historical intermediaries](https://ddrisco11.github.io/digitaltofilm_conversionmodel/#history)
 
-The default render is a 1600-pixel preview. Original resolution is available for the full output. The worker performs spectral calculations and reaction–diffusion steps on-device, and I can export both the PNG and its measured numerical trace. Browser and Python use independent random realizations.
+## Historical intermediaries
+
+I preserve the [earlier chemistry studio](https://ddrisco11.github.io/digitaltofilm_conversionmodel/chemistry-history.html), [selective film grade](https://ddrisco11.github.io/digitaltofilm_conversionmodel/selective.html), [synthetic negative lab](https://ddrisco11.github.io/digitaltofilm_conversionmodel/negative.html), and [color emulsion lab](https://ddrisco11.github.io/digitaltofilm_conversionmodel/physics.html) as steps in the development of Scan-B. The following measurements describe those earlier experiments.
 
 [Model and reproduction](experiments/silver/README.md) · [Detailed process whiteboard](docs/emulsion/path.svg)
 
@@ -22,7 +24,7 @@ The default render is a 1600-pixel preview. Original resolution is available for
 
 ### Why the first prints were dark
 
-My initial enlarger exposure formed too much dye in paper highlights. I also assigned too much scattering to the dye-bearing coating, raising the black floor. I tested the paper with a uniform exposure wedge and printed the same synthetic negatives with each correction separately. Relative enlarger exposure is now 0.35 and coating scatter is 0.01.
+My initial enlarger exposure formed too much dye in paper highlights. I also assigned too much scattering to the dye-bearing coating, raising the black floor. I tested the paper with a uniform exposure wedge and printed the same synthetic negatives with each correction separately. That earlier correction used enlarger exposure 0.35 and coating scatter 0.01; Scan-B uses the settings above.
 
 | Input gray | First print | Corrected print |
 |---|---:|---:|
